@@ -1,11 +1,7 @@
 require "spec_helper"
 
 RSpec.describe LightTwitter do
-  it "has a version number" do
-    expect(LightTwitter::VERSION).not_to be nil
-  end
-
-  it "does something useful" do
-    expect(false).to eq(true)
-  end
+  let(:user) {LightTwitter::User.new(CONSUMER_KEY, CONSUMER_SECRET,
+                                      ACCESS_TOKEN, ACCESS_SEACRET)}
 end
+
