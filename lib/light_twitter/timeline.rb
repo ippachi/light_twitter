@@ -33,11 +33,11 @@ module LightTwitter
 
         else
           tweets.each do |tw|
-            puts tw[:created_at]
-            puts tw[:text]
-            puts tw[:name]
-            puts "RT: #{tw[:favorite]}"
-            puts "FAV: #{tw[:retweet]}"
+            puts tw.created_at
+            puts tw.text
+            puts tw.name
+            puts "RT: #{tw.favorite}"
+            puts "FAV: #{tw.retweet}"
           end
         end
       end
