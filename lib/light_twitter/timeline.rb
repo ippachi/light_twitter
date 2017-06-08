@@ -1,16 +1,15 @@
 module LightTwitter
   module Timeline
-    def home_timeline(&block)
-      content("home", &block)
+
+    def self.define_timeline_method(name)
+      define_method "#{name}_timeline" do |&block|
+        content(name, &block)
+      end
     end
 
-    def mentions_timeline(&block)
-      content("mentinos",&block)
-    end
-
-    def user_timeline(&block)
-      content("user",&block)
-    end
+    define_timeline_method :home
+    define_timeline_method :user
+    define_timeline_method :mentions
 
     private
       def content(str,&block)
@@ -25,7 +24,7 @@ module LightTwitter
         if block_given?
           timelines.each do |timeline|
             yield(*timeline)
-          end
+        end
 
         else
           timelines.each do |timeline|
@@ -34,8 +33,6 @@ module LightTwitter
             puts 
           end
         end
-
-
       end
   end
 end
