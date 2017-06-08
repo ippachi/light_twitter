@@ -38,6 +38,7 @@ module LightTwitter
             puts tw.name
             puts "RT: #{tw.favorite}"
             puts "FAV: #{tw.retweet}"
+            puts 
           end
         end
       end
