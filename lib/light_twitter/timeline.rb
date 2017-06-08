@@ -15,22 +15,29 @@ module LightTwitter
       def content(str,&block)
 
         response = @endpoint.get("https://api.twitter.com/1.1/statuses/#{str}_timeline.json") 
-        timelines = []
+        tweets = []
+        tweet = Struct.new(:created_at, :text, :name, :favorite, :retweet)
 
-        JSON.parse(response.body).each do |twieet_info|
-          timelines << [twieet_info["user"]["name"], twieet_info["text"]]
+        JSON.parse(response.body).each do |tweet_info|
+          tweets << tweet.new(tweet_info["created_at"],
+                              tweet_info["text"],
+                              tweet_info["user"]["name"],
+                              tweet_info["favorite_count"],
+                              tweet_info["retweet_count"]) 
         end
 
         if block_given?
-          timelines.each do |timeline|
-            yield(*timeline)
-        end
+          tweets.each do |tw|
+            yield(tw)
+          end
 
         else
-          timelines.each do |timeline|
-            puts timeline[0]
-            puts timeline[1]
-            puts 
+          tweets.each do |tw|
+            puts tw[:created_at]
+            puts tw[:text]
+            puts tw[:name]
+            puts "RT: #{tw[:favorite]}"
+            puts "FAV: #{tw[:retweet]}"
           end
         end
       end
