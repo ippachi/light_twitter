@@ -1,3 +1,5 @@
+require 'light_twitter/exception'
+
 module LightTwitter
   module Timeline
 
@@ -15,6 +17,8 @@ module LightTwitter
       def content(str,&block)
 
         response = @endpoint.get("https://api.twitter.com/1.1/statuses/#{str}_timeline.json") 
+        raise response.code if response.code != "200"
+
         tweets = []
         tweet = Struct.new(:created_at, :text, :name, :favorite, :retweet)
 
