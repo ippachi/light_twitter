@@ -2,6 +2,7 @@
 
 require "bundler/setup"
 require "light_twitter"
+require '../hoge/key'
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
@@ -9,12 +10,9 @@ require "light_twitter"
 # (If you use this, don't forget to add pry to your Gemfile!)
 require "pry"
 
-CON = 'jcq7Du6YsCWtX6sublGxR88Ic'
-CONS = 'NEV5HEkO1cHZ55aDQeJRMFcJWYppqACmc7lRkHT2kP5q80qJ3e'
-ACC = '2503730593-E7ZYDv83lWnAExs8OjNt8jCzFnf8ldu6FUUmq4e'
-ACCS = 'TAYlLQv66ZqV3Kvp95HDOt44RD3jnvXvHAgrzFjqGoGkJ'
 
-@user = LightTwitter::User.new(CON, CONS,
-                                      ACC, ACCS)
+
+@user = LightTwitter::User.new(CON, CONS, ACC, ACCS)
+
 Pry.start
 
