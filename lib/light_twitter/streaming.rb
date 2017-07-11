@@ -17,6 +17,8 @@ module LightTwitter
       @request.oauth!(@https, @consumer, @access_token)
 
       @https.start do |http|
+        puts "start"
+        puts "if you finish streaming type 'quit'"
         http.request(@request) do |response|
           raise "limit" if response.code.eql? "420"
           EM.run do
@@ -44,6 +46,7 @@ module LightTwitter
           end
         end
       end
+
     end
   end
 end
