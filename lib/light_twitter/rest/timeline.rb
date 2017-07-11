@@ -15,7 +15,7 @@ module LightTwitter
       private
         def content(str,&block)
 
-          response = @endpoint.get("https://api.twitter.com/1.1/statuses/#{str}_timeline.json") 
+          response = @access_token.get("https://api.twitter.com/1.1/statuses/#{str}_timeline.json") 
 
           raise response.code if response.code != "200"
 
