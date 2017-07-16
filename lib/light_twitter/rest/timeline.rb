@@ -1,6 +1,8 @@
+require 'light_twitter/rest/rest_util'
 module LightTwitter
   module Rest
     module Timeline
+      prepend RestUtil
 
       def self.define_timeline_method(name)
         define_method "#{name}_timeline" do |&block|
@@ -30,21 +32,8 @@ module LightTwitter
                                 tweet_info["retweet_count"]) 
           end
 
-          if block_given?
-            tweets.each do |tw|
-              yield(tw)
-            end
+            output_tweet(tweets, &block)
 
-          else
-            tweets.each do |tw|
-              puts tw.created_at
-              puts tw.text
-              puts tw.name
-              puts "RT: #{tw.favorite}"
-              puts "FAV: #{tw.retweet}"
-              puts 
-            end
-          end
         end
     end
   end
