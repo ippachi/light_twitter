@@ -1,7 +1,7 @@
 module LightTwitter
   module Rest
     module Search
-      def search word
+      def search word, &block
         response = @access_token.get(URI.encode("https://api.twitter.com/1.1/search/tweets.json?q=#{word}"))
 
         raise response.code if response.code != "200"
@@ -17,21 +17,8 @@ module LightTwitter
                               tweet_info["retweet_count"]) 
         end
 
-        if block_given?
-          tweets.each do |tw|
-            yield(tw)
-          end
+        output_tweet(tweets, &block)
 
-        else
-          tweets.each do |tw|
-            puts tw.created_at
-            puts tw.text
-            puts tw.name
-            puts "RT: #{tw.favorite}"
-            puts "FAV: #{tw.retweet}"
-            puts 
-          end
-        end
       end
     end
   end
