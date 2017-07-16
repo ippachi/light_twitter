@@ -13,6 +13,5 @@ require "pry"
 
 
 @user = LightTwitter::User.new(CONSUMER_KEY, CONSUMER_SEACRET, ACCESS_TOKEN, ACCESS_SEACRET)
-
 Pry.start
 

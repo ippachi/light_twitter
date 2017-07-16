@@ -1,9 +1,11 @@
 require 'light_twitter/rest/timeline'
+require 'light_twitter/rest/search'
 require 'light_twitter/streaming'
 
 module LightTwitter
   class User
     include Rest::Timeline
+    include Rest::Search
     include Streaming
     def initialize(consumer_key, consumer_seacret,
                    access_token, access_seacret)
